@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Xhz52j1BZFVeBj+f9sZgrxezijR8aCD3vOwzI6cOXi4=",
+  "Source": "Project.BillingProcessing.Charge.Api",
+  "BasePath": "_content/Project.BillingProcessing.Charge.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
