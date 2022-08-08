@@ -9,12 +9,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Photos\charge.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.47.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Project.BillingProcessing.Customer.Domain\Project.BillingProcessing.Charge.Domain.csproj" />
+    <ProjectReference Include="..\Project.BillingProcessing.Charge.Domain\Project.BillingProcessing.Charge.Domain.csproj" />
+    <ProjectReference Include="..\Project.BillingProcessing.Charge.Infra\Project.BillingProcessing.Charge.Infra.csproj" />
+    <ProjectReference Include="..\Project.BillingProcessing.Charge.Domain\Project.BillingProcessing.Charge.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\Customer\Project.BillingProcessing.Customer\Project.BillingProcessing.Customer.Api\Photos\customer.proto" GrpcServices="Client">
+      <Link>Protos\customer.proto</Link>
+    </Protobuf>
+    <Protobuf Include="Photos\charge.proto" GrpcServices="Both" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson;
+﻿using Project.BillingProcessing.Charge.Domain.ChargeEntity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Project.BillingProcessing.Charge.Domain.SeedWork
 {
-    public abstract class Document : IDocument
+    public interface IDataService
     {
-        public ObjectId Id { get; set; }
-        public DateTime CreatedAt => Id.CreationTime;
+        public IChargeRepository Charges { get; }
     }
 }

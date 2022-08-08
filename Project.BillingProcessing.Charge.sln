@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{CEB22378-206
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3DC662FA-AF94-4F5C-9067-5841F541E14B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.BillingProcessing.Charge.Api.Test", "Project.BillingProcessing.Charge.Api.Test\Project.BillingProcessing.Charge.Api.Test.csproj", "{2802DCD4-D1D1-4C49-AD03-605C141A2E00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.BillingProcessing.Charge.Test", "Project.BillingProcessing.Charge.Api.Test\Project.BillingProcessing.Charge.Test.csproj", "{2802DCD4-D1D1-4C49-AD03-605C141A2E00}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Project.BillingProcessing.Charge.Domain", "Project.BillingProcessing.Charge.Domain\Project.BillingProcessing.Charge.Domain.csproj", "{1A801F4D-5C89-4B55-9EC3-CFF9DA2079D5}"
 EndProject

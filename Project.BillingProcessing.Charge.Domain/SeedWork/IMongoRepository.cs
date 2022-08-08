@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Project.BillingProcessing.Charge.Domain.SeedWork
 {
-    public interface IMongoRepository<TDocument> where TDocument : IDocument
+    public interface IMongoRepository<T>
     {
-        IEnumerable<TDocument> FilterBy(Expression<Func<TDocument, bool>> filterExpression);
+        IEnumerable<T> FilterBy(Expression<Func<T, bool>> filterExpression);
 
-        Task<TDocument> FindOneAsync(Expression<Func<TDocument, bool>> filterExpression);
+        Task<T> FindOneAsync(Expression<Func<T, bool>> filterExpression);
 
-        Task<TDocument> FindByIdAsync(string id);
+        Task<T> FindByIdAsync(string id);
 
-        Task InsertOneAsync(TDocument document);
+        Task InsertOneAsync(T document);
     }
 }

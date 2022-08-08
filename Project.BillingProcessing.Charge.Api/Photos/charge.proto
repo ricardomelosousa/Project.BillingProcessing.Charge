@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+package chargeProtoService.V1;
+option csharp_namespace = "GrpcChargeApi";
+import "google/protobuf/timestamp.proto";
+
+service  ChargeProtoService
+{
+   rpc GetChargeByParameter(GetChargeByParameterRequest) returns (ChargeMode);
+   rpc CreateCharge(ChargeMode) returns(CreateChargeResponse);
+
+}
+  message GetChargeByParameterRequest
+   {
+      string identification = 1;
+      string month = 3;
+   }
+
+   message ChargeMode
+   {
+        int32 identification = 1;
+        google.protobuf.Timestamp dueDate = 2;
+        string month = 3;
+        float ChargeValue = 4; 
+        
+   }
+   message CreateChargeResponse
+   {
+      bool success = 1;
+   }

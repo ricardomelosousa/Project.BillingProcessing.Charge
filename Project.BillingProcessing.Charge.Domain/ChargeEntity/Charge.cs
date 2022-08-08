@@ -1,14 +1,18 @@
-﻿using Project.BillingProcessing.Charge.Domain.SeedWork;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
 
 namespace Project.BillingProcessing.Charge.Domain.ChargeEntity
 {
-    public class Charge : Document
+    public class Charge
     {
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public DateTime DueDate { get; set; }
         public string Month { get; set; }
         public decimal ChargeValue { get; set; }
-        public int Identification { get; set; }
-
-
+        public long Identification { get; set; }
+       
     }
 }

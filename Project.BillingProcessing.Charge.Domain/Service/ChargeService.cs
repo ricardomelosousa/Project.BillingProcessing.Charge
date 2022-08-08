@@ -12,22 +12,22 @@ namespace Project.BillingProcessing.Charge.Domain.Service
         }
         public IEnumerable<ChargeEntity.Charge> FilterBy(Expression<Func<ChargeEntity.Charge, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            return _chargeRepository.FilterBy(filterExpression);
         }
 
-        public Task<ChargeEntity.Charge> FindByIdAsync(string id)
+        public async Task<ChargeEntity.Charge> FindByIdAsync(string id)
         {
-            throw new NotImplementedException();
+            return await _chargeRepository.FindByIdAsync(id);
         }
 
-        public Task<ChargeEntity.Charge> FindOneAsync(Expression<Func<ChargeEntity.Charge, bool>> filterExpression)
+        public async Task<ChargeEntity.Charge> FindOneAsync(Expression<Func<ChargeEntity.Charge, bool>> filterExpression)
         {
-            throw new NotImplementedException();
+            return await _chargeRepository.FindOneAsync(filterExpression);
         }
 
-        public Task InsertOneAsync(ChargeEntity.Charge document)
+        public async Task InsertOneAsync(ChargeEntity.Charge document)
         {
-            throw new NotImplementedException();
+            await _chargeRepository.InsertOneAsync(document);
         }
     }
 }

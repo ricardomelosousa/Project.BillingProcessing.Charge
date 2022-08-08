@@ -1,7 +1,6 @@
-using Project.BillingProcessing.Charge.Api.Models;
-using Project.BillingProcessing.Charge.Domain.SeedWork;
-using Project.BillingProcessing.Charge.Domain.Service;
-using Project.BillingProcessing.Charge.Domain.Service.Interface;
+
+
+using Project.BillingProcessing.Customer.Api.Photos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,11 +10,16 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.Configure<ChargeDatabaseSettings>(
-    builder.Configuration.GetSection("ChargeDatabase"));
-
-builder.Services.AddScoped<IDocument, Document>();
+builder.Services.AddGrpc();
 builder.Services.AddScoped<IChargeService, ChargeService>();
+builder.Services.AddScoped<IChargeRepository, ChargeRepository>();
+builder.Services.AddScoped<IDataService, DataService>();
+builder.Services.AddScoped<IChargeAppService, ChargeAppService>();
+builder.Services.AddSingleton<MongoContext>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<CustomersGrpcService>();
+builder.Services.AddGrpcClient<CustomerProtoService.CustomerProtoServiceClient>(opt => opt.Address = new Uri(builder.Configuration["GrpcService:CustomerUrl"]));
+
 
 var app = builder.Build();
 
