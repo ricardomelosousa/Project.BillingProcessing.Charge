@@ -1,4 +1,4 @@
-﻿using Project.BillingProcessing.Customer.Api.Photos;
+﻿
 
 namespace Project.BillingProcessing.Customer.Api;
 public class Startup
@@ -22,6 +22,10 @@ public class Startup
         services.AddAutoMapper(typeof(Startup));
         services.AddScoped<CustomersGrpcService>();
         services.AddGrpcClient<CustomerProtoService.CustomerProtoServiceClient>(opt=> opt.Address = new Uri(Configuration["GrpcService:CustomerUrl"]));
+       
+
+
+
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

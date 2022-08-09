@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GrpcChargeApi;
+using Project.BillingProcessing.Charge.Api.Application.Dto;
 using Project.BillingProcessing.Charge.Api.Models;
 using Project.BillingProcessing.Customer.Api.Photos;
 
@@ -11,6 +12,7 @@ namespace Project.BillingProcessing.Charge.Api.Map
         {
            CreateMap<Charge.Domain.ChargeEntity.Charge, ChargeMode>().ReverseMap();
             CreateMap<CustomerModelResponse, CustomerModel>();
+            CreateMap<Charge.Domain.ChargeEntity.Charge, ChargeIntegrationEvent>();
         }
     }
 }
