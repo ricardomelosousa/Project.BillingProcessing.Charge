@@ -1,7 +1,4 @@
-
-
 using Project.BillingProcessing.Customer.Api.Photos;
-using RabbitMQ.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,48 +17,6 @@ builder.Services.AddSingleton<MongoContext>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<CustomersGrpcService>();
 builder.Services.AddGrpcClient<CustomerProtoService.CustomerProtoServiceClient>(opt => opt.Address = new Uri(builder.Configuration["GrpcService:CustomerUrl"]));
-
-builder.Services.AddSingleton<IRabbitMQConnect>(sp =>
-{
-    var logger = sp.GetRequiredService<ILogger<RabbitMQConnect>>();
-    var factory = new ConnectionFactory()
-    {
-        HostName = builder.Configuration["HostName"],
-        DispatchConsumersAsync = true,
-        Uri = new Uri(builder.Configuration["EventBusConnection"])
-    };
-
-    if (!string.IsNullOrEmpty(builder.Configuration["EventBusUserName"]))
-    {
-        factory.UserName = builder.Configuration["EventBusUserName"];
-    }
-
-    if (!string.IsNullOrEmpty(builder.Configuration["EventBusPassword"]))
-    {
-        factory.Password = builder.Configuration["EventBusPassword"];
-    }
-
-    var retry = 3;
-    if (!string.IsNullOrEmpty(builder.Configuration["EventBusRetryCount"]))
-    {
-        retry = int.Parse(builder.Configuration["EventBusRetryCount"]);
-    }
-
-    return new RabbitMQConnect(factory, logger, retry);
-});
-
-
-builder.Services.AddSingleton<IEventBus, EventBusRabbitMQ>(sp =>
-{  
-    var rabbitMQConnection = sp.GetRequiredService<IRabbitMQConnect>();    
-    var logger = sp.GetRequiredService<ILogger<EventBusRabbitMQ>>();   
-    var retry = 3;
-    if (!string.IsNullOrEmpty(builder.Configuration["EventBusRetryCount"]))
-    {
-        retry = int.Parse(builder.Configuration["EventBusRetryCount"]);
-    }
-    return new EventBusRabbitMQ(rabbitMQConnection, logger, retry);
-});
 
 var app = builder.Build();
 
