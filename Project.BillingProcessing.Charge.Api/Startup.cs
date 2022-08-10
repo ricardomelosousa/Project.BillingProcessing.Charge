@@ -1,5 +1,7 @@
 ﻿
 
+using Project.BillingProcessing.Customer.Api.Photos;
+
 namespace Project.BillingProcessing.Customer.Api;
 public class Startup
 {

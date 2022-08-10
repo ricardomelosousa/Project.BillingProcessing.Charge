@@ -1,7 +1,4 @@
 ﻿using AutoMapper;
-using Project.BillingProcessing.Charge.Api.Application.Dto;
-using Project.BillingProcessing.Charge.Api.Application.Interface;
-using Project.BillingProcessing.Charge.Domain.Service.Interface;
 using System.Linq.Expressions;
 
 namespace Project.BillingProcessing.Charge.Api.Application.Service
@@ -10,18 +7,14 @@ namespace Project.BillingProcessing.Charge.Api.Application.Service
     {
         private readonly IChargeService _chargeService;
         private readonly CustomersGrpcService _customersGrpcService;
-        private readonly IEventBus _eventBus;
-        private readonly IMapper _mapper;
+       
 
-        public ChargeAppService(IChargeService chargeService, CustomersGrpcService customersGrpcService, IEventBus eventBus, IMapper mapper)
+        public ChargeAppService(IChargeService chargeService, CustomersGrpcService customersGrpcService)
         {
             _chargeService = chargeService;
-            _customersGrpcService = customersGrpcService;
-            _eventBus = eventBus;
-            _mapper = mapper;
+            _customersGrpcService = customersGrpcService;    
+         
         }
-
-
         public Task<Domain.ChargeEntity.Charge> FindByIdAsync(string id)
         {
             return _chargeService.FindByIdAsync(id);
@@ -58,8 +51,6 @@ namespace Project.BillingProcessing.Charge.Api.Application.Service
         public Task InsertOneAsync(Domain.ChargeEntity.Charge charge)
         {
             var insert = _chargeService.InsertOneAsync(charge);
-            var @event = _mapper.Map<ChargeIntegrationEvent>(charge);
-            _eventBus.Publish(@event);
             return insert;
 
         }

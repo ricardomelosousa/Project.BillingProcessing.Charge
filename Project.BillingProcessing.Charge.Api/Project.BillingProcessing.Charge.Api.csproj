@@ -24,7 +24,6 @@
     <ProjectReference Include="..\Project.BillingProcessing.Charge.Domain\Project.BillingProcessing.Charge.Domain.csproj" />
     <ProjectReference Include="..\Project.BillingProcessing.Charge.Infra\Project.BillingProcessing.Charge.Infra.csproj" />
     <ProjectReference Include="..\Project.BillingProcessing.Charge.Domain\Project.BillingProcessing.Charge.Domain.csproj" />
-    <ProjectReference Include="..\ProjectBillingProcessing.Charge.EventBus\ProjectBillingProcessing.Charge.EventBus.csproj" />
   </ItemGroup>
 
   <ItemGroup>
