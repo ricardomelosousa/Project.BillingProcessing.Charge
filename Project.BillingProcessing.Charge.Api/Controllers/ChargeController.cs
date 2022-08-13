@@ -17,22 +17,22 @@ namespace Project.BillingProcessing.Charge.Api.Controllers
             _chargeAppService = chargeAppService;
         }
 
-        [Route("GetChargeByParameter")]
-        [HttpGet]
-        [ProducesResponseType(typeof(Domain.ChargeEntity.Charge), (int)HttpStatusCode.OK)]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult> GetChargeByParameter(string identification, DateTime? dueDate)
-        {
-            try
-            {
-                var charges = _chargeAppService.GetByParameter(identification, dueDate);
-                return Ok(charges);
-            }
-            catch (Exception ex)
-            {
-                return NotFound(ex.Message);
-            }
-        }
+        //[Route("GetChargeByParameter")]
+        //[HttpGet]
+        //[ProducesResponseType(typeof(Domain.ChargeEntity.Charge), (int)HttpStatusCode.OK)]
+        //[ProducesResponseType((int)HttpStatusCode.NotFound)]
+        //public async Task<ActionResult> GetChargeByParameter(string identification, DateTime? dueDate)
+        //{
+        //    try
+        //    {
+        //        var charges = _chargeAppService.GetByParameter(identification, dueDate);
+        //        return Ok(charges);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return NotFound(ex.Message);
+        //    }
+        //}
 
 
         [Route("createCharge")]

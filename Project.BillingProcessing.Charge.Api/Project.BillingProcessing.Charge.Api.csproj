@@ -27,9 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Protobuf Include="..\..\Customer\Project.BillingProcessing.Customer\Project.BillingProcessing.Customer.Api\Photos\customer.proto" GrpcServices="Client">
-      <Link>Protos\customer.proto</Link>
-    </Protobuf>
     <Protobuf Include="Photos\charge.proto" GrpcServices="Both" />
   </ItemGroup>
 

@@ -6,13 +6,13 @@ namespace Project.BillingProcessing.Charge.Api.Application.Service
     public class ChargeAppService : IChargeAppService
     {
         private readonly IChargeService _chargeService;
-        private readonly CustomersGrpcService _customersGrpcService;
+
        
 
-        public ChargeAppService(IChargeService chargeService, CustomersGrpcService customersGrpcService)
+        public ChargeAppService(IChargeService chargeService)
         {
             _chargeService = chargeService;
-            _customersGrpcService = customersGrpcService;    
+          
          
         }
         public Task<Domain.ChargeEntity.Charge> FindByIdAsync(string id)
@@ -25,29 +25,7 @@ namespace Project.BillingProcessing.Charge.Api.Application.Service
             return _chargeService.FindOneAsync(filterExpression);
         }
 
-        public IEnumerable<Domain.ChargeEntity.Charge> GetByParameter(string identification, DateTime? dueDate)
-        {
-
-            if (!string.IsNullOrEmpty(identification) && dueDate != null)
-            {
-                var identificationValid = ValidIdentification(identification);
-
-                return _chargeService.FilterBy(a => a.Identification == identificationValid && a.DueDate.Month == Convert.ToDateTime(dueDate).Month);
-            }
-            else if (!string.IsNullOrEmpty(identification))
-            {
-                var identificationValid = ValidIdentification(identification);
-                return _chargeService.FilterBy(a => a.Identification == identificationValid);
-            }
-            else if (dueDate != null)
-            {
-                var ident = Convert.ToInt32(identification);
-                return _chargeService.FilterBy(a => a.DueDate.Month == Convert.ToDateTime(dueDate).Month);
-            }
-            return null;
-
-        }
-
+     
         public Task InsertOneAsync(Domain.ChargeEntity.Charge charge)
         {
             var insert = _chargeService.InsertOneAsync(charge);
@@ -55,17 +33,6 @@ namespace Project.BillingProcessing.Charge.Api.Application.Service
 
         }
 
-        private long ValidIdentification(string identification)
-        {
-            try
-            {
-                var customer = _customersGrpcService.GetCustomerValid(identification).GetAwaiter().GetResult();
-                return customer.Indentification;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+       
     }
 }

@@ -6,8 +6,8 @@ import "google/protobuf/timestamp.proto";
 
 service  ChargeProtoService
 {
-   rpc GetChargeByParameter(GetChargeByParameterRequest) returns (ChargeMode);
-   rpc CreateCharge(ChargeMode) returns(CreateChargeResponse);
+   rpc GetChargeByParameter(GetChargeByParameterRequest) returns (ChargeModel);
+   rpc CreateCharge(ChargeModel) returns(CreateChargeResponse);
 
 }
   message GetChargeByParameterRequest
@@ -16,12 +16,11 @@ service  ChargeProtoService
       string month = 3;
    }
 
-   message ChargeMode
+   message ChargeModel
    {
         int32 identification = 1;
-        google.protobuf.Timestamp dueDate = 2;
-        string month = 3;
-        float ChargeValue = 4; 
+        google.protobuf.Timestamp dueDate = 2;  
+        float ChargeValue = 3; 
         
    }
    message CreateChargeResponse

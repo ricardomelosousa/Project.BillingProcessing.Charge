@@ -1,6 +1,4 @@
-﻿
-
-using Project.BillingProcessing.Customer.Api.Photos;
+﻿using Project.BillingProcessing.Charge.Api.Grpc;
 
 namespace Project.BillingProcessing.Customer.Api;
 public class Startup
@@ -22,12 +20,7 @@ public class Startup
         services.AddScoped<IChargeAppService, ChargeAppService>();
         services.AddControllersWithViews();
         services.AddAutoMapper(typeof(Startup));
-        services.AddScoped<CustomersGrpcService>();
-        services.AddGrpcClient<CustomerProtoService.CustomerProtoServiceClient>(opt=> opt.Address = new Uri(Configuration["GrpcService:CustomerUrl"]));
-       
-
-
-
+        services.AddSingleton<ChargeGrpcService>();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -49,6 +42,7 @@ public class Startup
         app.UseAuthorization();
         app.UseEndpoints(endpoints =>
         {
+            endpoints.MapGrpcService<ChargeGrpcService>();//.RequireHost("*:5001");         
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Employees}/{action=Index}/{id?}");

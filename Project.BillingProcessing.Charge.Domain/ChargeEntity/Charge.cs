@@ -9,8 +9,7 @@ namespace Project.BillingProcessing.Charge.Domain.ChargeEntity
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        public DateTime DueDate { get; set; }
-        public string Month { get; set; }
+        public DateTime DueDate { get; set; }       
         public decimal ChargeValue { get; set; }
         public long Identification { get; set; }
        

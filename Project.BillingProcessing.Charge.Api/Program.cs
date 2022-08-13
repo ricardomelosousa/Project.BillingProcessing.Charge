@@ -1,4 +1,5 @@
-using Project.BillingProcessing.Customer.Api.Photos;
+using Project.BillingProcessing.Charge.Api.Grpc;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,7 @@ builder.Services.AddScoped<IDataService, DataService>();
 builder.Services.AddScoped<IChargeAppService, ChargeAppService>();
 builder.Services.AddSingleton<MongoContext>();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddScoped<CustomersGrpcService>();
-builder.Services.AddGrpcClient<CustomerProtoService.CustomerProtoServiceClient>(opt => opt.Address = new Uri(builder.Configuration["GrpcService:CustomerUrl"]));
+
 
 var app = builder.Build();
 
@@ -28,9 +28,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapGrpcService<ChargeGrpcService>();
 app.Run();
